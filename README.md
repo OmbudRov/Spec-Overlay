@@ -1,2 +1,2 @@
-# Example
-An example greeter plugin
+# Spec Overlay
+Add an Info Box to the GUI when wielding the SoulReaper Axe
