@@ -36,7 +36,8 @@ public class SpecOverlayPlugin extends Plugin {
     private ItemManager itemManager;
     private SpecOverlayCounter specOverlayCounter;
     private SpecOverlayOverlay specOverlayOverlay;
-    private static final int SoulReaperAxe = 28338;
+	private static final int SoulReaperAxe = 28338;
+	private static final int SunlightSpear = 30369;
     static final String ConfigGroupKey = "SpecOverlay";
 
 
@@ -63,7 +64,7 @@ public class SpecOverlayPlugin extends Plugin {
         if (itemContainerChanged.getItemContainer() != client.getItemContainer(InventoryID.EQUIPMENT)) {
             return;
         }
-        if (Objects.requireNonNull(client.getItemContainer(InventoryID.EQUIPMENT)).contains(SoulReaperAxe)) {
+        if (Objects.requireNonNull(client.getItemContainer(InventoryID.EQUIPMENT)).contains(SoulReaperAxe) || Objects.requireNonNull(client.getItemContainer(InventoryID.EQUIPMENT)).contains(SunlightSpear)) {
             if (specOverlayConfig.info() == SpecOverlayConfig.OverlayType.INFOBOX) {
                 specOverlayCounter.setImage(spriteManager.getSprite(SpriteID.MINIMAP_ORB_SPECIAL_ICON, 0));
                 if (!infoBoxManager.getInfoBoxes().contains(specOverlayCounter)) { //I genuinely cant figure out any other way to do this, the infobox keeps replicating itself when hopping worlds
@@ -98,7 +99,7 @@ public class SpecOverlayPlugin extends Plugin {
 
     @Subscribe
     public void onConfigChanged(ConfigChanged event) {
-        if (event.getGroup().equals(ConfigGroupKey) && client.getItemContainer(InventoryID.EQUIPMENT).contains(SoulReaperAxe)) {
+        if (event.getGroup().equals(ConfigGroupKey) && (Objects.requireNonNull(client.getItemContainer(InventoryID.EQUIPMENT)).contains(SoulReaperAxe) ||Objects.requireNonNull(client.getItemContainer(InventoryID.EQUIPMENT)).contains(SunlightSpear))) {
             if (event.getOldValue().equals("OVERLAY")) {
                 overlayManager.remove(specOverlayOverlay);
                 infoBoxManager.addInfoBox(specOverlayCounter);
