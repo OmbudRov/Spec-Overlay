@@ -80,6 +80,12 @@ public class SpecOverlayPlugin extends Plugin {
                 overlayManager.remove(specOverlayOverlay);
             }
         }
+        if (specOverlayConfig.info() == SpecOverlayConfig.OverlayType.ALWAYS) {
+            specOverlayCounter.setImage(spriteManager.getSprite(SpriteID.MINIMAP_ORB_SPECIAL_ICON, 0));
+            if (!infoBoxManager.getInfoBoxes().contains(specOverlayCounter)) { //I genuinely cant figure out any other way to do this, the infobox keeps replicating itself when hopping worlds
+                infoBoxManager.addInfoBox(specOverlayCounter);
+            }
+        }
 
     }
 

@@ -7,7 +7,7 @@ import net.runelite.client.config.ConfigItem;
 @ConfigGroup("SpecOverlay")
 public interface SpecOverlayConfig extends Config {
     enum OverlayType {
-        INFOBOX("InfoBox"), OVERLAY("Overlay");
+        INFOBOX("InfoBox"), OVERLAY("Overlay"),ALWAYS("Always");
         private final String name;
 
         OverlayType(String string) {
