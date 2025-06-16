@@ -4,28 +4,24 @@ import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 
-@ConfigGroup("SpecOverlay")
-public interface SpecOverlayConfig extends Config {
-    enum OverlayType {
-        INFOBOX("InfoBox"), OVERLAY("Overlay");
-        private final String name;
+@ConfigGroup(SpecOverlayConfig.CONFIG_GROUP)
+public interface SpecOverlayConfig extends Config
+{
+	String CONFIG_GROUP = "SpecOverlay";
 
-        OverlayType(String string) {
-            this.name = string;
-        }
+	enum OverlayType
+	{
+		INFOBOX,
+		OVERLAY
+	}
 
-        @Override
-        public String toString() {
-            return this.name;
-        }
-    }
-
-    @ConfigItem(
-            keyName = "OverlayType",
-            name = "Overlay Type",
-            description = "Choose how to display the current amount of special attack"
-    )
-    default OverlayType info() {
-        return OverlayType.INFOBOX;
-    }
+	@ConfigItem(
+		keyName = "OverlayType",
+		name = "Overlay Type",
+		description = "Choose how to display the current amount of special attack"
+	)
+	default OverlayType overlayType()
+	{
+		return OverlayType.INFOBOX;
+	}
 }
