@@ -2,6 +2,7 @@ package com.specoverlay;
 
 import com.google.inject.Provides;
 import java.awt.Color;
+import java.util.Set;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -64,6 +65,13 @@ public class SpecOverlayPlugin extends Plugin
 
 	@Getter(AccessLevel.PACKAGE)
 	private int energy = -1;
+
+	//Set to add more stuff in the future easily
+	private static final Set<Integer> WEAPON_ITEM_IDS = Set.of(
+			ItemID.SOULREAPER,
+			ItemID.WEAPON_OF_SOL,
+			ItemID.SOULREAPER_AXE_ORN
+	);
 
 	@Provides
 	SpecOverlayConfig provideConfig(final ConfigManager configManager)
@@ -206,6 +214,6 @@ public class SpecOverlayPlugin extends Plugin
 	private boolean isWeaponEquipped()
 	{
 		final var worn = client.getItemContainer(InventoryID.WORN);
-		return worn != null && (worn.contains(ItemID.SOULREAPER) || worn.contains(ItemID.WEAPON_OF_SOL));
+		return worn != null && WEAPON_ITEM_IDS.stream().anyMatch(worn::contains);
 	}
 }
